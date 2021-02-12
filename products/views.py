@@ -22,9 +22,14 @@ def chart_page(request):
     product_df = pd.DataFrame(qs1)
     purchase_df = pd.DataFrame(purchase.values())
     # print(product_df)
+
+    #merging df
+    product_df['product_id'] = product_df['id']
+    df = pd.merge(purchase_df,product_df,on='product_id').drop(['id_y','created_y'],axis=1).rename({'id_x':'id','created_x':'date'},axis=1)
     context = {
         'queryset':queryset,
         'product_df':product_df.to_html(),
         'purchase_df':purchase_df.to_html(),
+        'df':df.to_html(),
     }
     return render(request,template_name,context)
