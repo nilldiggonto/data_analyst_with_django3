@@ -29,6 +29,7 @@ def get_the_plot(chart_type,*args,**kwargs):
     elif chart_type == 'line':
         title = 'Line Plot'
         plt.title(title)
+        plt.plot(x,y)
     else:
         title ='Count Plot'
         plt.title(title)
