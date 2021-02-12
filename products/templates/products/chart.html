@@ -18,12 +18,14 @@
                     <h4>CHART PAGE</h4>
 
                     <div>
+
                         <form action="" class="form-group" method="POST">
                             {%csrf_token%}
-                            <input type="hidden" name="sales">
+                            <!-- <input type="hidden" name="sales"> -->
                             <div class="form-group">
                                 <!-- <label for="exampleFormControlSelect1">Select a Chart</label> -->
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select name="sales" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="" selected disabled>Please select</option>
                                     <option>Bar</option>
                                     <option>Line</option>
                                     <option>Pie</option>
@@ -36,12 +38,12 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="">Date From</label>
-                                    <input type="text" id="datepicker" name='date_from'
-                                        class=" form-control" placeholder="Date From">
+                                    <input type="text" id="datepicker" name='date_from' class=" form-control"
+                                        placeholder="Date From">
                                 </div>
                                 <div class="col">
                                     <label class="">Date to</label>
-                                    <input type="text" id="datepicker2"  class="form-control" name='date_to'
+                                    <input type="text" id="datepicker2" class="form-control" name='date_to'
                                         placeholder="Date To">
                                 </div>
                             </div>
@@ -53,7 +55,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {%if error_msg %}
+                    <h4 class="text-center text-danger">{{error_msg}}</h4>
+                    {%else%}
                     {{df | safe}}
+                    {%endif%}
                 </div>
             </div>
         </div>
