@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+
+{%block title%} Chart {%endblock title%}
+
+{%block content%}
+
+<!-- {{queryset}} -->
+{{product_df | safe}}
+
+<br>
+{{purchase_df | safe}}
+
+{%endblock%}
