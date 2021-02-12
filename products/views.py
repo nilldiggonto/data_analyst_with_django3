@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Product,Purchase
 
 import pandas as pd
+from .utils import get_the_plot
 
 
 # Create your views here.
@@ -24,6 +25,7 @@ def chart_page(request):
     # print(product_df)
     error_msg = None
     df = ''
+    graph = None
 
     if purchase_df.shape[0]>0:
     #merging df
@@ -56,7 +58,7 @@ def chart_page(request):
                     print(df)
                     print(df2)
                 else:
-                    print('chart show')
+                    graph = get_the_plot(chart_type,x=df2['date'],y=df2['total_price'],data=df)
             else:
                 error_msg = 'Select a chart type'
 
@@ -68,5 +70,6 @@ def chart_page(request):
         'product_df':product_df.to_html(),
         'purchase_df':purchase_df.to_html(),
         'df':df,
+        'graph':graph,
     }
     return render(request,template_name,context)

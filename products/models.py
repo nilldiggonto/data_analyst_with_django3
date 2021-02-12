@@ -17,7 +17,7 @@ class Purchase(models.Model):
     quantity    = models.PositiveIntegerField()
     total_price = models.PositiveBigIntegerField(blank=True,null=True)
     salesman    = models.ForeignKey(User,on_delete=models.CASCADE)
-    created     = models.DateTimeField(default=timezone.now,editable=False)
+    created     = models.DateTimeField(default=timezone.now)
 
     def save(self,*args,**kwargs):
         self.total_price = self.price * self.quantity

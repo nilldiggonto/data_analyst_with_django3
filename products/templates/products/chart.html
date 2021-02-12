@@ -28,7 +28,7 @@
                                     <option value="" selected disabled>Please select</option>
                                     <option value="bar">Bar</option>
                                     <option value="line">Line</option>
-                                    <option value="pie">Pie</option>
+                                    <option value="count">Count</option>
                                     <!-- <option>4</option> -->
                                     <!-- <option>5</option> -->
                                 </select>
@@ -58,7 +58,11 @@
                     {%if error_msg %}
                     <h4 class="text-center text-danger">{{error_msg}}</h4>
                     {%else%}
-                    {{df | safe}}
+                    {%if request.POST %}
+                        {%if graph %}
+                            <img src="data:image/png;base64,{{graph|safe}}" class="img-fluid" alt="">
+                        {%endif%}
+                    {%endif %}
                     {%endif%}
                 </div>
             </div>
