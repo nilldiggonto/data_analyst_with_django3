@@ -5,11 +5,73 @@
 {%block content%}
 
 <!-- {{queryset}} -->
-{{product_df | safe}}
+<div class="container mt-4">
+    <!-- {{product_df | safe}} -->
 
-<br>
-{{purchase_df | safe}}
-<br>
-{{df | safe}}
+    <!-- <br>
+    {{purchase_df | safe}}
+    <br> -->
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card border-primary">
+                <div class="card-header text-center border-primary">
+                    <h4>CHART PAGE</h4>
+
+                    <div>
+                        <form action="" class="form-group" method="POST">
+                            {%csrf_token%}
+                            <input type="hidden" name="sales">
+                            <div class="form-group">
+                                <!-- <label for="exampleFormControlSelect1">Select a Chart</label> -->
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Bar</option>
+                                    <option>Line</option>
+                                    <option>Pie</option>
+                                    <!-- <option>4</option> -->
+                                    <!-- <option>5</option> -->
+                                </select>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <label class="">Date From</label>
+                                    <input type="text" id="datepicker" name='date_from'
+                                        class=" form-control" placeholder="Date From">
+                                </div>
+                                <div class="col">
+                                    <label class="">Date to</label>
+                                    <input type="text" id="datepicker2"  class="form-control" name='date_to'
+                                        placeholder="Date To">
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-block btn-primary" type="submit">show chart</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{df | safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {%endblock%}
+
+{%block script%}
+
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#datepicker2').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>
+
+{%endblock script%}
